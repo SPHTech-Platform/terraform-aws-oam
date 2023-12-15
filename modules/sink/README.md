@@ -38,6 +38,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_oam_sink_arn"></a> [oam\_sink\_arn](#output\_oam\_sink\_arn) | ARN of OAM sink |
-| <a name="output_oam_sink_id"></a> [oam\_sink\_id](#output\_oam\_sink\_id) | ID of OAM sink |
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of OAM sink |
+| <a name="output_id"></a> [id](#output\_id) | ID of OAM sink |
 <!-- END_TF_DOCS -->
