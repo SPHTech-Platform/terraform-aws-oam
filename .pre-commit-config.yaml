@@ -1,18 +1,18 @@
 repos:
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.22
+    rev: v0.1.30
     hooks:
       - id: shellcheck
 
   - repo: https://github.com/tcort/markdown-link-check
-    rev: v3.11.2
+    rev: v3.13.7
     hooks:
       - id: markdown-link-check
         args:
           - "--config=mlc_config.json"
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.81.2
+    rev: v1.100.0
     hooks:
       - id: terraform_fmt
       - id: terraform_providers_lock
@@ -34,7 +34,7 @@ repos:
       - id: terraform_checkov
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       # Git style
       - id: check-added-large-files

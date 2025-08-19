@@ -4,6 +4,12 @@ variable "name" {
   default     = null
 }
 
+variable "region" {
+  description = "Region for the sink"
+  type        = string
+  default     = "ap-southeast-1"
+}
+
 variable "source_account_ids" {
   description = "List of source AWS account IDs for OAM"
   type        = list(string)

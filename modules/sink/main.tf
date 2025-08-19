@@ -1,10 +1,13 @@
 resource "aws_oam_sink" "this" {
+  region = var.region
+
   name = var.name
   tags = var.tags
 }
 
 resource "aws_oam_sink_policy" "this" {
-  count = local.policy_required ? 1 : 0
+  count  = local.policy_required ? 1 : 0
+  region = var.region
 
   sink_identifier = aws_oam_sink.this.arn
 
