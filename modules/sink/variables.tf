@@ -5,9 +5,9 @@ variable "name" {
 }
 
 variable "region" {
-  description = "Region for the sink"
+  description = "(Optional) Region for the sink. Defaults to AWS provider region."
   type        = string
-  default     = "ap-southeast-1"
+  default     = null
 }
 
 variable "source_account_ids" {
