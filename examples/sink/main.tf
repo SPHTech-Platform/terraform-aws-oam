@@ -13,7 +13,7 @@ module "oam_sink" {
 module "oam_sink_us_east_1" {
   source = "../../modules/sink"
 
-  region = "us_east-1"
+  region = "us-east-1"
   name   = "oam-sink"
 
   source_account_ids = [
