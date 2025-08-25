@@ -16,8 +16,7 @@ permissions:
 jobs:
   auto-update:
     runs-on:
-      - self-hosted
-      - platform-eng-ent
+      - platform-eng-ent-v2-dual
     steps:
       - uses: actions/checkout@v2
 

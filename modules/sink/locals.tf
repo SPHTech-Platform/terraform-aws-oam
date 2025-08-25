@@ -1,4 +1,6 @@
 locals {
+  region = var.region != null ? var.region : data.aws_region.current.region
+
   source_accounts_statement = {
     Effect = "Allow"
     Principal = {
