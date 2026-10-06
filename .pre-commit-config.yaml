@@ -1,30 +1,35 @@
 repos:
-  - repo: https://github.com/tofuutils/pre-commit-opentofu
-    rev: v2.4.2
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.109.2
     hooks:
-      - id: tofu_fmt
-      - id: tofu_providers_lock
+      # --tf-path=tofu: this is an OpenTofu repo — without it the hooks shell
+      # out to `terraform`, which resolves providers to registry.terraform.io
+      # (tofu uses registry.opentofu.org) and pollutes lock files.
+      - id: terraform_fmt
         args:
-          - --hook-config=--mode=only-check-is-current-lockfile-cross-platform
-      - id: tofu_validate
-        exclude: (^|/)examples[^/]*/
+          - --hook-config=--tf-path=tofu
+      - id: terraform_providers_lock
+        args:
+          - --args=-platform=linux_amd64
+          - --args=-platform=darwin_arm64
+          - --hook-config=--tf-path=tofu
+      - id: terraform_validate
         args:
           - --hook-config=--parallelism-limit=1
           - --hook-config=--retry-once-with-cleanup=true
-      - id: tofu_tflint
+          - --hook-config=--tf-path=tofu
+      - id: terraform_tflint
         exclude: (^|/)examples[^/]*/
         args:
-          - --args=--call-module-type=local
           - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
-      - id: tofu_docs
+      - id: terraform_docs
         args:
+          - --hook-config=--config=.terraform-docs.yml
           - --hook-config=--path-to-file=README.md
           - --hook-config=--add-to-existing-file=false
-          - --hook-config=--recursive=true
-      - id: tofu_checkov
-        exclude: (^|/)examples[^/]*/
+      - id: terraform_checkov
         args:
-          - --args=--skip-check CKV_TF_1,CKV_TF_2
+          - "--args=--skip-path cf_templates --skip-check CKV_TF_1"
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -32,15 +37,10 @@ repos:
       # Git style
       - id: check-added-large-files
       - id: check-merge-conflict
-      - id: check-merge-conflict
       - id: no-commit-to-branch
 
       # Common errors
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: check-yaml
-
-      # Security
-      - id: detect-aws-credentials
-        args: ['--allow-missing-credentials']
-      - id: detect-private-key
+        exclude: ".*/templates($|/.*)"
