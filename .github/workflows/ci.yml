@@ -11,7 +11,7 @@ permissions:
   security-events: write
 jobs:
   ci:
-    uses: SPHTech-Platform/platform-reusable-workflow/.github/workflows/tofu.yaml@daf5fc2dcea7b2d17180fb68e3e219f234f37715 # v2.2.1
+    uses: SPHTech-Platform/platform-reusable-workflow/.github/workflows/tofu.yaml@ca0c0931167298a643e0ab81165fbd8c552d59ee # v2.2.8
     with:
       upload_sarif: false
       runner_label: platform-eng-ent-v2-dual
